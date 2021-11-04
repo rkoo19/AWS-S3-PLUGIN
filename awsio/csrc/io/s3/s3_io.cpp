@@ -64,11 +64,7 @@ Aws::Client::ClientConfiguration &setUpS3Config() {
 
     const char *use_https = getenv("S3_USE_HTTPS");
     if (use_https) {
-        if (use_https[0] == '0') {
-            cfg.scheme = Aws::Http::Scheme::HTTP;
-        } else {
-            cfg.scheme = Aws::Http::Scheme::HTTPS;
-        }
+        cfg.scheme = Aws::Http::Scheme::HTTPS;
     }
     const char *verify_ssl = getenv("S3_VERIFY_SSL");
     if (verify_ssl) {
@@ -76,14 +72,6 @@ Aws::Client::ClientConfiguration &setUpS3Config() {
             cfg.verifySSL = false;
         } else {
             cfg.verifySSL = true;
-        }
-    }
-    const char *use_https = getenv("S3_USE_HTTPS");
-    if (use_https) {
-        if (use_https[0] == '0') {
-            cfg.scheme = Aws::Http::Scheme::HTTP;
-        } else {
-            cfg.scheme = Aws::Http::Scheme::HTTPS;
         }
     }
     const char *region = getenv("AWS_REGION");
